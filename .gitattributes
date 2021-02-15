@@ -1,0 +1,21 @@
+# DOS line endings
+*.bat text eol=crlf
+# UNIX line endings
+*.sh text eol=lf
+Dockerfile text eol=lf
+
+# Set default behavior in case core.autocrlf set
+* text=auto
+*.xml text
+*.ps1 text
+
+*.md text
+*.txt text
+
+*.gif binary
+*.png binary
+*.jpg binary
+*.pdf binary
+*.exe binary
+*.jar binary
+
