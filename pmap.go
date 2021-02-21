@@ -1,3 +1,4 @@
+// pmap package creates a persistant map of key value pairs
 package pmap
 
 import (
@@ -40,6 +41,31 @@ func New(name string, path string) (*Pmap, error) {
 	}
 	err = p.load()
 	return p, err
+}
+
+// Copy a pmap to a new  pmap
+func (p *Pmap) Copy(newname string) (*Pmap, error) {
+	var err error
+	if newname == "" {
+		err = errors.New("empty pmap name not valid")
+		return nil, err
+	}
+	if !strings.HasSuffix(newname, ".pmap") {
+		newname = newname + ".pmap"
+	}
+	if newname == p.Name {
+		err = errors.New("new pmap name equals old pmap name, not valid")
+		return nil, err
+	}
+	q := new(Pmap)
+	q.Pm = make(map[string]interface{})
+	// copy the old to new pmap data
+	q.Name = newname
+	q.Path = p.Path
+	for k, v := range p.Pm {
+		q.Pm[k] = v
+	}
+	return q, err
 }
 
 // Prints the contents of the pmap with an optional title

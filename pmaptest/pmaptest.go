@@ -66,7 +66,14 @@ func main() {
 	}
 	abc := tm.GetVal("abc").(int)
 	if abc > 1240 {
+		tn, err := tm.Copy("billy")
+		if err != nil {
+			log.Printf("Problems: %v", err)
+			return
+		}
 		tm.Delete("abc")
+		tn.Print("New copy ")
+		tn.Close()
 	}
 	tm.Replace("def", "A dog")
 	tm.Replace("struct", T{A: "gg", B: 4005, C: 123.45, D: []byte("jklmn")})
