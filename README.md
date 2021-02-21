@@ -41,6 +41,11 @@ New creates a new persistent map
 ``` go
 func New(name string, path string) (*Pmap, error) 
 ```
+### Copy
+Copy a pmap to a new pmap.
+``` go
+func (p *Pmap) Copy(newname string) (*Pmap, error)
+```
 
 ### Print
 Prints the contents of the pmap with an optional title
